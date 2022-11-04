@@ -1,0 +1,32 @@
+@import "_variable";
+@import "mixin";
+
+body,html{
+    height: 100vh;
+    margin: 0;
+    font-size: 62.5%;
+}
+.sys-content-wrap{
+    width: 100%;
+}
+.sys-add-button {
+    margin-bottom: 10px;
+}
+.align-right {
+    margin-top: 10px;
+    float: right;
+}
+/*重写element-plus分页组件样式，否则样式会乱*/
+.el-pagination{
+    .el-pagination__sizes{
+        width: 128px;
+    }
+}
+/*重写弹窗样式，保证分页右对齐浮动时的样式*/
+.el-dialog__body{
+    overflow: hidden;
+}
+
+.diaplay-none{
+    display: none !important;
+}
