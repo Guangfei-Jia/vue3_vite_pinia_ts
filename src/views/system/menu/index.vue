@@ -1,3 +1,4 @@
+<!-- 菜单管理 -->
 <script setup lang="ts">
 import { ref,onMounted } from "vue";
 import EditDialog from "./components/EditDialog.vue";

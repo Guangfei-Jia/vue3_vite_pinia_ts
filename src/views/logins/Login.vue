@@ -2,81 +2,72 @@
 import { publicUrl } from "@/api";
 import { useStore } from "@/store";
 import { postAction, getAction } from "@/api/axios";
-import { reactive, ref } from "vue";
-import type { FormInstance, FormRules } from "element-plus";
-import useRouter from "@/composables/useRouter";
+import { FormInstance } from "element-plus";
 import { menuInterface } from '@/utils/interface'
 import { createRoute } from '@/utils/utils'
+import useRouter from "@/composables/useRouter";
+import useForm from "@/composables/useForm";
 
-let ruleForm = reactive({ username: "", password: "" });
-
-const formSize = ref("large"); //table 大小
-const store = useStore();
-const ruleFormRef = ref<FormInstance>(); //table ref
-const rules = reactive<FormRules>({
+const formData = {
+  username: "",
+  password: ""
+}
+const formRuleData = {
   username: [
     { required: true, message: "请输入用户名", trigger: "blur" },
     { min: 5, message: "用户名最少 5 个字符", trigger: "blur" },
   ],
   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-}); //table验证规则
+}
+const { form, formRef, formRules, formSubmit } = useForm(formData, formRuleData);
 
+const store = useStore();
 const { toRegister, toReset, toIndex, router } = useRouter(); //路由跳转
-
 const onSubmit = (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  formEl.validate(async (valid, fields) => {
-    if (!valid) {
-      console.log("error submit!", fields);
-      return false;
-    }
-    try {
-      let res = await postAction(publicUrl.login, ruleForm);
-      store.setLogin(res.data);
-      let menures = await getAction(publicUrl.userMenuList);
-      const menuData = menures.data;
-      store.setMenu(menuData);
-      //登陆成功，动态添加路由
-      menuData.forEach(function (v: menuInterface) {
-        router.addRoute('home', createRoute(v));
-        if (v.children) {
-          v.children.forEach(function (v2) {
-            router.addRoute('home', createRoute(v2 as menuInterface))
-            if ((v2 as any).children) {
-              (v2 as any).children.forEach(function (v3: menuInterface) {
-                router.addRoute('home', createRoute(v3))
-              });
-            }
-          });
-        }
-      });
-      toIndex();
-    }catch(error){
-      console.log("error post!", error);
-    }
-  });
+  formSubmit(formEl,async () => {
+    const res = await postAction(publicUrl.login, form);
+    store.setLogin(res.data);
+    const menures = await getAction(publicUrl.userMenuList);
+    const menuData = menures.data;
+    store.setMenu(menuData);
+    //登陆成功，动态添加路由
+    menuData.forEach(function (v: menuInterface) {
+      router.addRoute('home', createRoute(v));
+      if (v.children) {
+        v.children.forEach(function (v2) {
+          router.addRoute('home', createRoute(v2 as menuInterface))
+          if ((v2 as any).children) {
+            (v2 as any).children.forEach(function (v3: menuInterface) {
+              router.addRoute('home', createRoute(v3))
+            });
+          }
+        });
+      }
+    });
+    toIndex();
+  })
 };
 </script>
 
 <template>
   <el-form
-    ref="ruleFormRef"
-    :model="ruleForm"
-    :rules="rules"
+    ref="formRef"
+    :model="form"
+    :rules="formRules"
     class="forms"
-    :size="formSize"
+    size="large"
     status-icon
   >
     <el-form-item prop="username">
       <el-input
-        v-model="ruleForm.username"
+        v-model="form.username"
         placeholder="请输入用户名"
       ></el-input>
     </el-form-item>
     <el-form-item prop="password">
       <el-input
         show-password
-        v-model="ruleForm.password"
+        v-model="form.password"
         placeholder="请输入密码"
       ></el-input>
     </el-form-item>
@@ -88,7 +79,7 @@ const onSubmit = (formEl: FormInstance | undefined) => {
       <el-button
         class="sunbit-size"
         type="primary"
-        @click="onSubmit(ruleFormRef)"
+        @click="onSubmit(formRef)"
         >登陆</el-button
       >
     </el-form-item>

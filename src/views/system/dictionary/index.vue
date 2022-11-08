@@ -1,3 +1,4 @@
+<!-- 字典管理 -->
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import EditDialog from "./components/EditDialog.vue";
