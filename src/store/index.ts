@@ -1,17 +1,6 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: fei
- * @Date: 2022-09-20 17:20:21
- * @LastEditors: fei
- * @LastEditTime: 2022-09-22 16:00:54
- */
 import { defineStore } from 'pinia'
 import { menuInterface } from '../utils/interface'
 import { setStore, getStore, removeStore } from '../utils/storage';
-import { checkResponse } from '../utils/utils';
-import { publicUrl } from '../api'
-import { getAction } from '../api/axios';
 let userInfo = getStore('userInfo');
 let menu = JSON.parse(JSON.stringify(getStore('menu')));
 export const useStore = defineStore('main', {

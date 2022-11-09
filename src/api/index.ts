@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: fei
- * @Date: 2021-07-30 15:22:18
- * @LastEditors: fei
- * @LastEditTime: 2021-12-16 14:47:35
- */
 //角色api
 export const roleUrl = {
     list: '/role/list',

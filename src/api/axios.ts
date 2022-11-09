@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: fei
- * @Date: 2021-07-28 13:59:05
- * @LastEditors: fei
- * @LastEditTime: 2021-08-03 16:31:33
- */
 import axios from '../utils/request';
 
 const httpAction = (method: any, url: string, params: {}) => {

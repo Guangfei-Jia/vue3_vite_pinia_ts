@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: fei
- * @Date: 2022-09-16 10:24:26
- * @LastEditors: fei
- * @LastEditTime: 2022-09-22 16:58:58
- */
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
