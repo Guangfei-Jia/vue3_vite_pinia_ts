@@ -1,3 +1,4 @@
+<!-- 注册 -->
 <script setup lang="ts">
 import { publicUrl } from "@/api";
 import { postAction } from '@/api/axios';

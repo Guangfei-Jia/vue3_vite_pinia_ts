@@ -1,3 +1,4 @@
+<!-- 欢迎页 -->
 <template>
   <div>
       {{title}}

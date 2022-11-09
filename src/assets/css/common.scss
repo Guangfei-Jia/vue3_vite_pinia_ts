@@ -16,6 +16,12 @@ body,html{
     margin-top: 10px;
     float: right;
 }
+.twoInput{
+    margin-right: 0 !important;
+}
+.text-center{
+    text-align: center;
+}
 /*重写element-plus分页组件样式，否则样式会乱*/
 .el-pagination{
     .el-pagination__sizes{

@@ -24,6 +24,7 @@ const systermName = "管理系统";
 .contant {
   padding-top: 10%;
   height: 100vh;
+  min-height: 600px;
   background: url("../../assets/imgs/login_bg.jpg");
   z-index: 0;
   background-size: 100% 100%;

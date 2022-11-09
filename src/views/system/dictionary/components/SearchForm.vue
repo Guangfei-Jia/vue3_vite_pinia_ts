@@ -33,7 +33,7 @@ const onReset = (formEl:FormInstance | null) => {
     class="demo-form-inline"
   >
     <el-row :gutter="10">
-      <el-col :span="6">
+      <el-col :span="8">
         <el-form-item label="字典编码" prop="code" style="width:100%">
           <el-input
             v-model="form.code"
@@ -43,7 +43,7 @@ const onReset = (formEl:FormInstance | null) => {
           ></el-input>
         </el-form-item>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="8">
         <el-form-item label="字典名称" prop="name" style="width:100%">
           <el-input
             v-model="form.name"
@@ -53,14 +53,16 @@ const onReset = (formEl:FormInstance | null) => {
           ></el-input>
         </el-form-item>
       </el-col>
-      <el-form-item>
-        <el-button type="primary" size="medium" @click="onSubmit(formRef)"
-          >查询</el-button
-        >
-        <el-button size="medium" @click="onReset(formRef)"
-          >重置</el-button
-        >
-      </el-form-item>
+      <el-col :span="8">
+        <el-form-item>
+          <el-button type="primary" size="medium" @click="onSubmit(formRef)"
+            >查询</el-button
+          >
+          <el-button size="medium" @click="onReset(formRef)"
+            >重置</el-button
+          >
+        </el-form-item>
+      </el-col>
     </el-row>
   </el-form>
 </template>
